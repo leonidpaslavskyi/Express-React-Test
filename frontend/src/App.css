@@ -1,0 +1,185 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.translate-suggestions {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.text-info {
+  width: 100%;
+  height: auto;
+  margin: 1.5rem auto 0rem;
+  color: #E8F0F2;
+}
+
+ul.nav {
+  width: fit-content;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 0px;
+  color: #0e7d7d;
+}
+
+ul.nav li {
+  padding: 0.5rem 1rem;
+  list-style: none;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.7s;
+}
+
+ul.nav li:nth-child(2) {
+  border-radius: 0;
+}
+
+ul.nav li:hover {
+  background: #ECF5F5;
+}
+
+ul.nav li.active {
+  background: #ECF5F5;
+  border-bottom: 1px solid #0e7d7d;
+}
+
+.term p,
+.symbols p,
+.suggestions p,
+.qa p,
+.history p,
+.concordance p {
+  font-size: 2rem;
+  text-align: center;
+}
+
+textarea {
+  border: 0 !important;
+  background-color: #f7f7f7 !important;
+}
+
+.active textarea {
+  background-color: #FFF !important;
+}
+
+textarea:focus {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+
+.active .bg-green {
+  background-color: #0e7d7d;
+}
+
+.item-index {
+  color: #000;
+}
+
+.active .item-index {
+  color: #FFF;
+}
+
+.bg-light-green {
+  background-color: #C2DEDE;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.border-mt {
+  border-left: 4px solid #0e7d7d;
+}
+
+.dropdown-btn {
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.dropdown-toggle.btn {
+  padding-top: 0;
+  padding-left: 6px;
+  padding-right: 6px;
+  background-color: white;
+  color: #0e7d7d;
+  border-color: #ccc;
+  ;
+}
+
+.primary-text-color {
+  color: #0e7d7d;
+}
+
+.circle-text {
+  padding: 0 6px;
+  border-radius: 50%;
+  background: #0e7d7d;
+  color: white;
+  margin-left: 5px;
+}
+
+.line-height-3 {
+  line-height: 3;
+}
+
+.bg-grey {
+  background: #ccc;
+}
+
+.flex-1 {
+  flex: 1 0;
+}
+
+.ws-1 {
+  word-spacing: 1rem;
+}
+
+.bg-light-grey {
+  background: #f7f7f7;
+}
