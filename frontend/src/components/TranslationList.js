@@ -36,35 +36,61 @@ class TranslationList extends Component {
     let { textList } = this.state;
 
     return (
-      <div>
-        <ul className="list-inline">
-          {textList.data && textList.data.length > 0 ? (
-            textList.data.map((data, index) => {
-              return (
-                <li key={index} className={this.state.selected == index ? 'active' : ''} onClick={() => {
-                  this.setState({...this.state, selected: index})
-                }}>
-                  <TranslationItem data={data} index={index} symbols={textList.symbols} active={this.state.selected == index} toggleShowToast={this.toggleShowToast} />
-                </li>
-              );
-            })
-          ) : (
-            <li>No textList(s)</li>
-          )}
-        </ul>
-        <ToastContainer position="top-end" className="p-3">
-          <Toast show={this.state.showToast} onClose={this.toggleShowToast} delay={2000} autohide>
-            <Toast.Header>
-              <img
-                src="holder.js/20x20?text=%20"
-                className="rounded me-2"
-                alt=""
-              />
-              <strong className="me-auto">Infomation</strong>
-            </Toast.Header>
-            <Toast.Body>Data saved successfully!</Toast.Body>
-          </Toast>
-        </ToastContainer>
+		  <div className="tooltip__content">
+
+        <div className="tooltip__main--container right_panel">
+          <div className="tooltip__main">
+            <div className="tooltip__table--wrapper">
+              <div className="tooltip__table">
+                <table cellSpacing="0">
+                  <tbody>
+                    {textList.data && textList.data.length > 0 ? (
+                      textList.data.map((data, index) => {
+                        return (
+                          <tr key={index} className={this.state.selected == index ? 'active__translate' : ''} onClick={() => {
+                            this.setState({...this.state, selected: index})
+                          }}>
+                            <TranslationItem data={data} index={index} symbols={textList.symbols} active={this.state.selected == index} toggleShowToast={this.toggleShowToast} />
+                          </tr>
+                        );
+                      })
+                    ) : (
+                      <tr>
+                        <td>
+                          No textList(s)
+                        </td>
+                      </tr>
+                    )}
+                    </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          {/* <ul className="list-inline">
+            {textList.data && textList.data.length > 0 ? (
+              textList.data.map((data, index) => {
+                return (
+                  <li key={index} className={this.state.selected == index ? 'active' : ''} onClick={() => {
+                    this.setState({...this.state, selected: index})
+                  }}>
+                    <TranslationItem data={data} index={index} symbols={textList.symbols} active={this.state.selected == index} toggleShowToast={this.toggleShowToast} />
+                  </li>
+                );
+              })
+            ) : (
+              <li>No textList(s)</li>
+            )}
+          </ul> */}
+          <ToastContainer position="top-end" className="p-3">
+            <Toast show={this.state.showToast} onClose={this.toggleShowToast} delay={2000} autohide>
+              <Toast.Header>
+                <strong className="me-auto">Infomation</strong>
+              </Toast.Header>
+              <Toast.Body>Data saved successfully!</Toast.Body>
+            </Toast>
+          </ToastContainer>
+        </div>
       </div>
     );
   }

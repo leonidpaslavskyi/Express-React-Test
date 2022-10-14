@@ -19,8 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/api', routes)
 
 app.use((err, req, res, next) => {
-  console.log(err)
-  next()
+  res.status(500).json(err);
 })
 
 app.listen(port, () => {

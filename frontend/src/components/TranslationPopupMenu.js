@@ -1,23 +1,163 @@
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+import { useRef, useEffect, useState } from 'react'
 import spellingIcon from '../assets/images/spelling.svg'
 import commentgreenIcon from '../assets/images/commentgreen.svg'
+import ellipsesIcon from '../assets/images/ellipses.svg'
 
-function MenuAlignEndExample({text}) {
+function TranslationPopupMenu({ text, index }) {
+  
+  const langListRef = useRef(null);
+  const commentLangRef = useRef(null);
+  const [showLangList, setShowLangList] = useState(false)
+  const [showCommentLang, setShowCommentLang] = useState(false)
+  
+  const handleLangComment = (e) => {
+    e.preventDefault()
+    setShowLangList(false)
+    setShowCommentLang(true)
+  }
+  
+  const handleLangList = (e) => {
+    e.preventDefault()
+    setShowLangList(true)
+  }
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (langListRef.current && !langListRef.current.contains(event.target)) {
+        setShowLangList(false);
+      }
+      if (commentLangRef.current && !commentLangRef.current.contains(event.target)) {
+        setShowCommentLang(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [langListRef, commentLangRef]);
+
   return (
-    <div className='d-flex flex-row'>
-      <span className='px-3 text-secondary'><small>{ text }</small></span>
-      <DropdownButton
-        align="end"
-        title={<span className='text-center dropdown-btn'>...</span>}
-        id="dropdown-menu-align-end"
-      >
-        <Dropdown.Item eventKey="1" className='d-flex flex-row justify-content-between primary-text-color fw-bold'><span className='pe-3'><img src={spellingIcon} className='pe-2' />Check spelling</span><span className='bg-light rounded px-2 text-black fw-light'><small>Ctrl+J</small></span></Dropdown.Item>
-        <Dropdown.Item eventKey="2" className='d-flex flex-row justify-content-between primary-text-color fw-bold'><span className='pe-3'><img src={commentgreenIcon} className='pe-2' />Add comment</span><span className='bg-light rounded px-2 text-black fw-light'><small>Ctrl+K</small></span></Dropdown.Item>
-      </DropdownButton>
-    </div>
-    
+    <>
+      <div className="lang__info">
+        <span>{ text }</span>
+        <div className="more__lang position-relative">
+          <a href="" className={"more__button " + (showLangList ? 'active__lang--button' : '')} onClick={handleLangList}>
+            <img src={ellipsesIcon} alt="ellipses" />
+          </a>
+          {showLangList && <div className="lang__list top-0 start-50" ref={langListRef}>
+            <ul>
+              <li>
+                <a href="" onClick={(e) => e.preventDefault()}>
+                  <div className="list__image">
+                    <img src={spellingIcon} alt="spelling" />
+                  </div>
+                  <div className="list__info">
+                    <p> Check spelling</p>
+                  </div>
+                  <span className="hotkeys__float">Ctrl+J</span>
+                </a>
+              </li>
+              <li>
+                <a href="" className="lang__comment" onClick={handleLangComment}>
+                  <div className="list__image">
+                    <img src={commentgreenIcon} alt="spelling" />
+                  </div>
+                  <div className="list__info">
+                    <p> Add comment</p>
+                    <span> Mark text first</span>
+                  </div>
+                  <span className="hotkeys__float">Ctrl+K</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          }
+          {showCommentLang && <div className={"comment__lang top-0 " + (text !== 'Danish' ? 'start-50 ms-n20' : '')} ref={commentLangRef}>
+            <form action="">
+              <div className="comment__field">
+                <input type="text" placeholder="Type comment..." />
+              </div>
+              <div className="comment__list">
+                <p>For whom comment is?</p>
+                <div className="list__comment--inner">
+                  <div className="elem__comment--lang">
+                    <div>
+                      <input className="styled-checkbox" type="checkbox" />
+                      <label htmlFor="comment1">Justas J. <span className="spacer__lang"></span><span
+                        className="comment__status">Project manager</span></label>
+                    </div>
+                  </div>
+
+                  <div className="elem__comment--lang">
+                    <div>
+                      <input className="styled-checkbox" type="checkbox" />
+                      <label htmlFor="comment2">Lukas B. <span className="spacer__lang"></span><span
+                        className="comment__status">Translator</span></label>
+                    </div>
+                  </div>
+
+                  <div className="elem__comment--lang">
+                    <div>
+                      <input className="styled-checkbox" type="checkbox" />
+                      <label htmlFor="comment3">Dalia M.<span className="spacer__lang"></span><span
+                        className="comment__status">Proofreader</span></label>
+                    </div>
+                  </div>
+
+                  <div className="elem__comment--lang">
+                    <div>
+                      <input className="styled-checkbox" type="checkbox" />
+                      <label htmlFor="comment4">Ausra D.<span className="spacer__lang"></span><span
+                        className="comment__status">Creative proofreader</span></label>
+                    </div>
+                  </div>
+
+
+
+                  <div className="elem__comment--lang">
+                    <div>
+                      <input className="styled-checkbox" type="checkbox" />
+                      <label htmlFor="comment5">Dalia M.<span className="spacer__lang"></span><span
+                        className="comment__status">Proofreader</span></label>
+                    </div>
+                  </div>
+
+                  <div className="elem__comment--lang">
+                    <div>
+                      <input className="styled-checkbox" type="checkbox" />
+                      <label htmlFor="comment6">Ausra D.<span className="spacer__lang"></span><span
+                        className="comment__status">Creative proofreader</span></label>
+                    </div>
+                  </div>
+
+
+                  <div className="elem__comment--lang">
+                    <div>
+                      <input className="styled-checkbox" type="checkbox" />
+                      <label htmlFor="comment7">Dalia M.<span className="spacer__lang"></span><span
+                        className="comment__status">Proofreader</span></label>
+                    </div>
+                  </div>
+
+                  <div className="elem__comment--lang">
+                    <div>
+                      <input className="styled-checkbox" type="checkbox" />
+                      <label htmlFor="comment8">Ausra D.<span className="spacer__lang"></span><span
+                        className="comment__status">Creative proofreader</span></label>
+                    </div>
+                  </div>
+                </div>
+                <div className="comment__controls">
+                  <input type="submit" value="Comment" />
+                  <a href="" onClick={(e) => e.preventDefault()}>Cancel</a>
+                </div>
+              </div>
+            </form>
+          </div>}
+        </div>
+      </div>
+    </>
   );
 }
 
-export default MenuAlignEndExample;
+export default TranslationPopupMenu;

@@ -13,20 +13,27 @@ const getData = () => {
 }
 
 router.get('/', (req, res, next) => {
-  const textList = getData()
-  res.send(textList)
+  try {
+    const textList = getData()
+    res.send(textList)
+  } catch (error) {
+    console.error(error)
+    next(error)
+  }
+  
 })
 
-router.put('/:id', (req, res, next) => {
-  var textList = getData()
-  fs.readFile(dataPath, 'utf8', (err, data) => {
+router.put('/:id', async (req, res, next) => {
+  try {
+    var textList = getData()
     const textIndex = req.params['id']
-    console.log(textList)
-    console.log(textIndex)
     textList.data[textIndex].translation_text.output = req.body.content
     saveData(textList)
     res.send(`${textIndex}th text has been saved`)
-  }, true)
+  } catch (error) {
+    console.error(error)
+    next(error)
+  }
 })
 
 module.exports = router

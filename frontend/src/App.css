@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
 }
 
 .App-logo {
@@ -182,4 +182,8 @@ textarea:focus {
 
 .bg-light-grey {
   background: #f7f7f7;
+}
+
+.ms-n20 {
+  margin-left: -10px !important;
 }
